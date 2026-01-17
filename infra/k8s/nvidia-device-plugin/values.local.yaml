@@ -1,0 +1,4 @@
+# Local dev: do NOT require Node Feature Discovery labels.
+affinity: {}
+nodeSelector:
+  kubernetes.io/os: linux

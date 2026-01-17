@@ -1,0 +1,109 @@
+INFO 01-16 18:10:46 api_server.py:585] vLLM API server version 0.6.4.post1
+INFO 01-16 18:10:46 api_server.py:586] args: Namespace(host='0.0.0.0', port=8000, uvicorn_log_level='info', allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, prompt_adapters=None, chat_template=None, response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_cert_reqs=0, root_path=None, middleware=[], return_tokens_as_token_ids=False, disable_frontend_multiprocessing=False, enable_auto_tool_choice=False, tool_call_parser=None, tool_parser_plugin='', model='TinyLlama/TinyLlama-1.1B-Chat-v1.0', task='auto', tokenizer=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', chat_template_text_format='string', trust_remote_code=False, allowed_local_media_path=None, download_dir=None, load_format='auto', config_format=<ConfigFormat.AUTO: 'auto'>, dtype='auto', kv_cache_dtype='auto', quantization_param_path=None, max_model_len=None, guided_decoding_backend='outlines', distributed_executor_backend=None, worker_use_ray=False, pipeline_parallel_size=1, tensor_parallel_size=1, max_parallel_loading_workers=None, ray_workers_use_nsight=False, block_size=16, enable_prefix_caching=False, disable_sliding_window=False, use_v2_block_manager=False, num_lookahead_slots=0, seed=0, swap_space=4, cpu_offload_gb=0, gpu_memory_utilization=0.85, num_gpu_blocks_override=None, max_num_batched_tokens=None, max_num_seqs=32, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, hf_overrides=None, enforce_eager=False, max_seq_len_to_capture=8192, disable_custom_all_reduce=False, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config=None, limit_mm_per_prompt=None, mm_processor_kwargs=None, enable_lora=False, enable_lora_bias=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, enable_prompt_adapter=False, max_prompt_adapters=1, max_prompt_adapter_token=0, device='auto', num_scheduler_steps=1, multi_step_stream_outputs=True, scheduler_delay_factor=0.0, enable_chunked_prefill=None, speculative_model=None, speculative_model_quantization=None, num_speculative_tokens=None, speculative_disable_mqa_scorer=False, speculative_draft_tensor_parallel_size=None, speculative_max_model_len=None, speculative_disable_by_batch_size=None, ngram_prompt_lookup_max=None, ngram_prompt_lookup_min=None, spec_decoding_acceptance_method='rejection_sampler', typical_acceptance_sampler_posterior_threshold=None, typical_acceptance_sampler_posterior_alpha=None, disable_logprobs_during_spec_decoding=None, model_loader_extra_config=None, ignore_patterns=[], preemption_mode=None, served_model_name=None, qlora_adapter_name_or_path=None, otlp_traces_endpoint=None, collect_detailed_traces=None, disable_async_output_proc=False, scheduling_policy='fcfs', override_neuron_config=None, override_pooler_config=None, disable_log_requests=False, max_log_len=None, disable_fastapi_docs=False, enable_prompt_tokens_details=False)
+INFO 01-16 18:10:46 api_server.py:175] Multiprocessing frontend to use ipc:///tmp/57fc5134-2343-4e42-af5f-abf063b48205 for IPC Path.
+INFO 01-16 18:10:46 api_server.py:194] Started engine process with PID 38
+INFO 01-16 18:10:50 config.py:350] This model supports multiple tasks: {'embedding', 'generate'}. Defaulting to 'generate'.
+WARNING 01-16 18:10:50 arg_utils.py:1075] [DEPRECATED] Block manager v1 has been removed, and setting --use-v2-block-manager to True or False has no effect on vLLM behavior. Please remove --use-v2-block-manager in your engine argument. If your use case is not supported by SelfAttnBlockSpaceManager (i.e. block manager v2), please file an issue with detailed information.
+INFO 01-16 18:10:52 config.py:350] This model supports multiple tasks: {'generate', 'embedding'}. Defaulting to 'generate'.
+WARNING 01-16 18:10:52 arg_utils.py:1075] [DEPRECATED] Block manager v1 has been removed, and setting --use-v2-block-manager to True or False has no effect on vLLM behavior. Please remove --use-v2-block-manager in your engine argument. If your use case is not supported by SelfAttnBlockSpaceManager (i.e. block manager v2), please file an issue with detailed information.
+INFO 01-16 18:10:52 llm_engine.py:249] Initializing an LLM engine (v0.6.4.post1) with config: model='TinyLlama/TinyLlama-1.1B-Chat-v1.0', speculative_config=None, tokenizer='TinyLlama/TinyLlama-1.1B-Chat-v1.0', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0, num_scheduler_steps=1, chunked_prefill_enabled=False multi_step_stream_outputs=True, enable_prefix_caching=False, use_async_output_proc=True, use_cached_outputs=True, chat_template_text_format=string, mm_processor_kwargs=None, pooler_config=None)
+WARNING 01-16 18:10:52 utils.py:720] Using 'pin_memory=False' as WSL is detected. This may slow down the performance.
+INFO 01-16 18:10:52 selector.py:135] Using Flash Attention backend.
+INFO 01-16 18:10:54 model_runner.py:1072] Starting to load model TinyLlama/TinyLlama-1.1B-Chat-v1.0...
+INFO 01-16 18:10:54 weight_utils.py:243] Using model weights format ['*.safetensors']
+INFO 01-16 18:11:57 weight_utils.py:288] No model.safetensors.index.json found in remote.
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.51s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.51s/it]
+
+INFO 01-16 18:11:58 model_runner.py:1077] Loading model weights took 2.0512 GB
+INFO 01-16 18:11:59 worker.py:232] Memory profiling results: total_gpu_memory=12.00GiB initial_memory_usage=3.14GiB peak_torch_memory=2.15GiB memory_usage_post_profile=3.17GiB non_torch_memory=1.11GiB kv_cache_size=6.94GiB gpu_memory_utilization=0.85
+INFO 01-16 18:11:59 gpu_executor.py:113] # GPU blocks: 20671, # CPU blocks: 11915
+INFO 01-16 18:11:59 gpu_executor.py:117] Maximum concurrency for 2048 tokens per request: 161.49x
+Task exception was never retrieved
+future: <Task finished name='Task-2' coro=<MQLLMEngineClient.run_output_handler_loop() done, defined at /usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py:178> exception=ZMQError('Operation not supported')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py", line 184, in run_output_handler_loop
+    while await self.output_socket.poll(timeout=VLLM_RPC_TIMEOUT
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/zmq/_future.py", line 400, in poll
+    raise _zmq.ZMQError(_zmq.ENOTSUP)
+zmq.error.ZMQError: Operation not supported
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<MQLLMEngineClient.run_output_handler_loop() done, defined at /usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py:178> exception=ZMQError('Operation not supported')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py", line 184, in run_output_handler_loop
+    while await self.output_socket.poll(timeout=VLLM_RPC_TIMEOUT
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/zmq/_future.py", line 400, in poll
+    raise _zmq.ZMQError(_zmq.ENOTSUP)
+zmq.error.ZMQError: Operation not supported
+Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<MQLLMEngineClient.run_output_handler_loop() done, defined at /usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py:178> exception=ZMQError('Operation not supported')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py", line 184, in run_output_handler_loop
+    while await self.output_socket.poll(timeout=VLLM_RPC_TIMEOUT
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/zmq/_future.py", line 400, in poll
+    raise _zmq.ZMQError(_zmq.ENOTSUP)
+zmq.error.ZMQError: Operation not supported
+Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<MQLLMEngineClient.run_output_handler_loop() done, defined at /usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py:178> exception=ZMQError('Operation not supported')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py", line 184, in run_output_handler_loop
+    while await self.output_socket.poll(timeout=VLLM_RPC_TIMEOUT
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/zmq/_future.py", line 400, in poll
+    raise _zmq.ZMQError(_zmq.ENOTSUP)
+zmq.error.ZMQError: Operation not supported
+Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<MQLLMEngineClient.run_output_handler_loop() done, defined at /usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py:178> exception=ZMQError('Operation not supported')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py", line 184, in run_output_handler_loop
+    while await self.output_socket.poll(timeout=VLLM_RPC_TIMEOUT
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/zmq/_future.py", line 400, in poll
+    raise _zmq.ZMQError(_zmq.ENOTSUP)
+zmq.error.ZMQError: Operation not supported
+Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<MQLLMEngineClient.run_output_handler_loop() done, defined at /usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py:178> exception=ZMQError('Operation not supported')>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/vllm/engine/multiprocessing/client.py", line 184, in run_output_handler_loop
+    while await self.output_socket.poll(timeout=VLLM_RPC_TIMEOUT
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/zmq/_future.py", line 400, in poll
+    raise _zmq.ZMQError(_zmq.ENOTSUP)
+zmq.error.ZMQError: Operation not supported
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 643, in <module>
+    uvloop.run(run_server(args))
+  File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 109, in run
+    return __asyncio.run(
+           ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/usr/local/lib/python3.12/dist-packages/uvloop/__init__.py", line 61, in wrapper
+    return await main
+           ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 609, in run_server
+    async with build_async_engine_client(args) as engine_client:
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 113, in build_async_engine_client
+    async with build_async_engine_client_from_engine_args(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/openai/api_server.py", line 210, in build_async_engine_client_from_engine_args
+    raise RuntimeError(
+RuntimeError: Engine process failed to start. See stack trace for the root cause.
