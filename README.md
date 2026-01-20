@@ -43,7 +43,10 @@ Each phase below links to a standalone Markdown doc intended to live under `./do
 - [Phase 3 — Investigation (The “Stall”)](docs/phase-3-investigation-stall.md)
 - [Phase 4 — Stabilization (k6 + Ingress tuning)](docs/phase-4-stabilization-k6-ingress.md)
 - [Phase 5 — Verification & Results (Matrix sweep)](docs/phase-5-verification-results.md)
+- [Phase 5.5 — Tuning & Comparison](docs/phase-5-verification-results.md#results--tuned-phase-55-comparison)
 - [Phase 6 — Advanced Verification (Stress Test)](docs/phase-6-advanced-verification.md)
+- [Phase 7 — Reproducibility & Polish (Makefile)](walkthrough.md#reproducibility-phase-7)
+- [Phase 8 — Observability Implementation](docs/phase-8-observability.md)
 
 Quick links:
 - 📊 [Load Test Report](docs/load_test_report.md)
@@ -72,6 +75,14 @@ Executed a full matrix sweep (Short vs. Long payloads, concurrency 1..16) and ca
 
 ### Phase 6: Advanced Verification (Stress & UX)
 Pushed the system to **64 concurrent users**, achieving **48 RPS** (Short) and **15 RPS** (Long) with **0 errors**, proving extreme stability. Validated "Chat Feel" with a streaming probe, measuring **56ms** Time-To-First-Token (TTFT).
+
+### Phase 7: Reproducibility
+Created a unified `Makefile` for one-command deployment (`make deploy`) and benchmarking (`make benchmark`), ensuring consistent environments for all users.
+
+### Phase 8: Observability
+Implemented a "Glass Box" stack with **Prometheus**, **Grafana**, and **DCGM Exporter**.
+- Real-time dashboards for GPU utilization, KV Cache usage, and Requests/sec.
+- Added Latency histograms (TTFT, TPOT) for deep performance insights.
 
 ---
 
