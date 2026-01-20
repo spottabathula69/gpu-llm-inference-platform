@@ -116,3 +116,19 @@ k6 run loadtest/k6_load_test.js \
 nvidia-smi --query-gpu=timestamp,utilization.gpu,utilization.memory,memory.used,memory.total,temperature.gpu,power.draw \
   --format=csv -l 1 | tee loadtest/gpu_logs/run_$(date +%Y%m%d_%H%M%S).csv
 ```
+
+### D) Monitoring & Observability
+**Prometheus**: Scrapes vLLM metrics (port 8000) and GPU stats.
+**Grafana**: Visualizes performance.
+To access the Dashboard:
+1. Port-forward Grafana:
+   ```bash
+   kubectl port-forward svc/prometheus-grafana -n monitoring 3000:80
+   ```
+2. Login at `http://localhost:3000`:
+   - User: `admin`
+   - Pass: `admin`
+3. View **vLLM Inference Metrics** dashboard.
+
+![vLLM Dashboard](docs/images/vllm_dashboard.png)
+*(Note: Run `make benchmark` to populate data, then save a screenshot here)*
