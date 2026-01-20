@@ -9,6 +9,8 @@ spec:
   selector:
     matchLabels:
       app: vllm
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -22,8 +24,8 @@ spec:
           - --host=0.0.0.0
           - --port=8000
           # Good starter settings (we’ll tune later)
-          - --gpu-memory-utilization=0.40
-          - --max-num-seqs=16
+          - --gpu-memory-utilization=0.85
+          - --max-num-seqs=64
           - --swap-space=1
           - --enforce-eager
         ports:

@@ -1,0 +1,268 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+     execution: local
+        script: /script/load_test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 20 max VUs, 30m30s max duration (incl. graceful stop):
+              * contacts: 192 iterations shared among 20 VUs (maxDuration: 30m0s, gracefulStop: 30s)
+
+
+running (00m01.0s), 20/20 VUs, 0 complete and 0 interrupted iterations
+contacts   [   0% ] 20 VUs  00m01.0s/30m0s  000/192 shared iters
+
+running (00m02.0s), 20/20 VUs, 0 complete and 0 interrupted iterations
+contacts   [   0% ] 20 VUs  00m02.0s/30m0s  000/192 shared iters
+
+running (00m03.0s), 20/20 VUs, 0 complete and 0 interrupted iterations
+contacts   [   0% ] 20 VUs  00m03.0s/30m0s  000/192 shared iters
+
+running (00m04.0s), 20/20 VUs, 20 complete and 0 interrupted iterations
+contacts   [  10% ] 20 VUs  00m04.0s/30m0s  020/192 shared iters
+
+running (00m05.0s), 20/20 VUs, 20 complete and 0 interrupted iterations
+contacts   [  10% ] 20 VUs  00m05.0s/30m0s  020/192 shared iters
+
+running (00m06.0s), 20/20 VUs, 20 complete and 0 interrupted iterations
+contacts   [  10% ] 20 VUs  00m06.0s/30m0s  020/192 shared iters
+
+running (00m07.0s), 20/20 VUs, 40 complete and 0 interrupted iterations
+contacts   [  21% ] 20 VUs  00m07.0s/30m0s  040/192 shared iters
+
+running (00m08.0s), 20/20 VUs, 40 complete and 0 interrupted iterations
+contacts   [  21% ] 20 VUs  00m08.0s/30m0s  040/192 shared iters
+
+running (00m09.0s), 20/20 VUs, 40 complete and 0 interrupted iterations
+contacts   [  21% ] 20 VUs  00m09.0s/30m0s  040/192 shared iters
+
+running (00m10.0s), 20/20 VUs, 60 complete and 0 interrupted iterations
+contacts   [  31% ] 20 VUs  00m10.0s/30m0s  060/192 shared iters
+
+running (00m11.0s), 20/20 VUs, 60 complete and 0 interrupted iterations
+contacts   [  31% ] 20 VUs  00m11.0s/30m0s  060/192 shared iters
+
+running (00m12.0s), 20/20 VUs, 60 complete and 0 interrupted iterations
+contacts   [  31% ] 20 VUs  00m12.0s/30m0s  060/192 shared iters
+
+running (00m13.0s), 20/20 VUs, 80 complete and 0 interrupted iterations
+contacts   [  42% ] 20 VUs  00m13.0s/30m0s  080/192 shared iters
+
+running (00m14.0s), 20/20 VUs, 80 complete and 0 interrupted iterations
+contacts   [  42% ] 20 VUs  00m14.0s/30m0s  080/192 shared iters
+
+running (00m15.0s), 20/20 VUs, 100 complete and 0 interrupted iterations
+contacts   [  52% ] 20 VUs  00m15.0s/30m0s  100/192 shared iters
+
+running (00m16.0s), 20/20 VUs, 100 complete and 0 interrupted iterations
+contacts   [  52% ] 20 VUs  00m16.0s/30m0s  100/192 shared iters
+
+running (00m17.0s), 20/20 VUs, 100 complete and 0 interrupted iterations
+contacts   [  52% ] 20 VUs  00m17.0s/30m0s  100/192 shared iters
+
+running (00m18.0s), 20/20 VUs, 120 complete and 0 interrupted iterations
+contacts   [  62% ] 20 VUs  00m18.0s/30m0s  120/192 shared iters
+
+running (00m19.0s), 20/20 VUs, 120 complete and 0 interrupted iterations
+contacts   [  62% ] 20 VUs  00m19.0s/30m0s  120/192 shared iters
+
+running (00m20.0s), 20/20 VUs, 120 complete and 0 interrupted iterations
+contacts   [  62% ] 20 VUs  00m20.0s/30m0s  120/192 shared iters
+
+running (00m21.0s), 20/20 VUs, 140 complete and 0 interrupted iterations
+contacts   [  73% ] 20 VUs  00m21.0s/30m0s  140/192 shared iters
+
+running (00m22.0s), 20/20 VUs, 140 complete and 0 interrupted iterations
+contacts   [  73% ] 20 VUs  00m22.0s/30m0s  140/192 shared iters
+
+running (00m23.0s), 20/20 VUs, 140 complete and 0 interrupted iterations
+contacts   [  73% ] 20 VUs  00m23.0s/30m0s  140/192 shared iters
+
+running (00m24.0s), 20/20 VUs, 160 complete and 0 interrupted iterations
+contacts   [  83% ] 20 VUs  00m24.0s/30m0s  160/192 shared iters
+
+running (00m25.0s), 20/20 VUs, 160 complete and 0 interrupted iterations
+contacts   [  83% ] 20 VUs  00m25.0s/30m0s  160/192 shared iters
+
+running (00m26.0s), 20/20 VUs, 160 complete and 0 interrupted iterations
+contacts   [  83% ] 20 VUs  00m26.0s/30m0s  160/192 shared iters
+
+running (00m27.0s), 12/20 VUs, 180 complete and 0 interrupted iterations
+contacts   [  94% ] 20 VUs  00m27.0s/30m0s  180/192 shared iters
+
+running (00m28.0s), 12/20 VUs, 180 complete and 0 interrupted iterations
+contacts   [  94% ] 20 VUs  00m28.0s/30m0s  180/192 shared iters
+
+running (00m29.0s), 12/20 VUs, 180 complete and 0 interrupted iterations
+contacts   [  94% ] 20 VUs  00m29.0s/30m0s  180/192 shared iters
+
+
+  █ THRESHOLDS 
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 192     6.523808/s
+    checks_succeeded...: 100.00% 192 out of 192
+    checks_failed......: 0.00%   0 out of 192
+
+    ✓ status is 200
+
+    HTTP
+    http_req_duration..............: avg=2.95s min=2.76s med=2.92s max=3.25s p(90)=3.22s p(95)=3.25s
+      { expected_response:true }...: avg=2.95s min=2.76s med=2.92s max=3.25s p(90)=3.22s p(95)=3.25s
+    http_req_failed................: 0.00%  0 out of 192
+    http_reqs......................: 192    6.523808/s
+
+    EXECUTION
+    iteration_duration.............: avg=2.94s min=2.76s med=2.9s  max=3.25s p(90)=3.23s p(95)=3.25s
+    iterations.....................: 192    6.523808/s
+    vus............................: 12     min=12       max=20
+    vus_max........................: 20     min=20       max=20
+
+    NETWORK
+    data_received..................: 309 kB 11 kB/s
+    data_sent......................: 111 kB 3.8 kB/s
+
+
+
+
+running (00m29.4s), 00/20 VUs, 192 complete and 0 interrupted iterations
+contacts ✓ [ 100% ] 20 VUs  00m29.4s/30m0s  192/192 shared iters
+{
+    "metrics": {
+        "http_req_connecting": {
+            "p(95)": 0.2104896999999998,
+            "avg": 0.022315109374999993,
+            "min": 0,
+            "med": 0,
+            "max": 0.360707,
+            "p(90)": 0.0317862000000002
+        },
+        "http_req_duration{expected_response:true}": {
+            "max": 3255.384392,
+            "p(90)": 3227.682886800001,
+            "p(95)": 3254.3960746000002,
+            "avg": 2950.247261385417,
+            "min": 2761.235276,
+            "med": 2921.348579
+        },
+        "http_req_tls_handshaking": {
+            "med": 0,
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0
+        },
+        "http_req_sending": {
+            "max": 0.999334,
+            "p(90)": 0.15790110000000002,
+            "p(95)": 0.21605665,
+            "avg": 0.04927876562499999,
+            "min": 0.002662,
+            "med": 0.0111595
+        },
+        "data_received": {
+            "count": 308624,
+            "rate": 10486.477373553498
+        },
+        "vus": {
+            "value": 12,
+            "min": 12,
+            "max": 20
+        },
+        "http_req_blocked": {
+            "avg": 0.26030377604166666,
+            "min": 0.000625,
+            "med": 0.0019705,
+            "max": 3.014056,
+            "p(90)": 1.6946494000000107,
+            "p(95)": 2.4755096999999995
+        },
+        "iterations": {
+            "count": 192,
+            "rate": 6.523807791105915
+        },
+        "http_req_waiting": {
+            "p(95)": 3254.02219005,
+            "avg": 2950.0918849531245,
+            "min": 2761.086294,
+            "med": 2921.29742,
+            "max": 3254.657883,
+            "p(90)": 3227.3791783000015
+        },
+        "http_req_receiving": {
+            "p(95)": 0.46355584999999944,
+            "avg": 0.1060976666666668,
+            "min": 0.005951,
+            "med": 0.033993999999999996,
+            "max": 0.885951,
+            "p(90)": 0.3841666
+        },
+        "data_sent": {
+            "count": 111168,
+            "rate": 3777.2847110503244
+        },
+        "vus_max": {
+            "value": 20,
+            "min": 20,
+            "max": 20
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 192,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "checks": {
+            "passes": 192,
+            "fails": 0,
+            "value": 1
+        },
+        "http_reqs": {
+            "count": 192,
+            "rate": 6.523807791105915
+        },
+        "http_req_duration": {
+            "p(95)": 3254.3960746000002,
+            "avg": 2950.247261385417,
+            "min": 2761.235276,
+            "med": 2921.348579,
+            "max": 3255.384392,
+            "p(90)": 3227.682886800001
+        },
+        "iteration_duration": {
+            "avg": 2946.2745582968764,
+            "min": 2761.31564,
+            "med": 2909.6116844999997,
+            "max": 3257.645594,
+            "p(90)": 3230.2663572000015,
+            "p(95)": 3256.862045
+        }
+    },
+    "root_group": {
+        "groups": {},
+        "checks": {
+                "status is 200": {
+                    "passes": 192,
+                    "fails": 0,
+                    "name": "status is 200",
+                    "path": "::status is 200",
+                    "id": "6210a8cd14cd70477eba5c5e4cb3fb5f"
+                }
+            },
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+}

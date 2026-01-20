@@ -52,3 +52,35 @@ Apply low-risk tuning knobs (example):
 - increase `--max-num-seqs`
 
 Then re-run the exact same matrix to compare deltas.
+
+## Results — Tuned (Phase 5.5 Comparison)
+
+**Configuration Change**:
+- Baseline: `--gpu-memory-utilization=0.40`, `--max-num-seqs=16`
+- Tuned: `--gpu-memory-utilization=0.85`, `--max-num-seqs=64`
+
+### Short Sweep Comparison (64 tokens)
+| Concurrency | RPS (Base) | RPS (Tuned) | p95 Latency (Base) | p95 Latency (Tuned) | Max Mem (Base) | Max Mem (Tuned) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1  | 1.71 | **1.71** | 0.65s | **0.66s** | 6.0GB | **11.4GB** |
+| 2  | 3.04 | **3.12** | 0.70s | **0.67s** | 6.0GB | **11.4GB** |
+| 4  | 5.93 | **5.76** | 0.70s | **0.75s** | 6.0GB | **11.4GB** |
+| 8  | 10.98| **10.79**| 0.78s | **0.86s** | 6.0GB | **11.4GB** |
+| 12 | 15.76| **15.79**| 1.12s | **0.96s** | 6.0GB | **11.4GB** |
+| 16 | 20.18| **19.56**| 0.95s | **1.08s** | 6.0GB | **11.4GB** |
+
+### Long Sweep Comparison (256 tokens)
+| Concurrency | RPS (Base) | RPS (Tuned) | p95 Latency (Base) | p95 Latency (Tuned) | Max Mem (Base) | Max Mem (Tuned) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1  | 0.43 | **0.44** | 2.46s | **2.43s** | 6.0GB | **11.4GB** |
+| 2  | 0.78 | **0.79** | 2.67s | **2.72s** | 6.0GB | **11.4GB** |
+| 4  | 1.51 | **1.54** | 2.78s | **2.66s** | 6.0GB | **11.4GB** |
+| 8  | 2.93 | **2.93** | 2.84s | **2.77s** | 6.0GB | **11.4GB** |
+| 12 | 4.27 | **4.29** | 3.03s | **3.14s** | 6.0GB | **11.4GB** |
+| 16 | 5.47 | **5.47** | 3.09s | **3.23s** | 6.0GB | **11.4GB** |
+
+### Comparison Analysis
+1.  **Memory Saturation**: The most distinct change is memory usage jumping from ~6GB to ~11.4GB. This is intentional; by setting utilization to 0.85, we force vLLM to reserve more VRAM for the KV cache, preventing OOMs under heavier unexpected loads.
+2.  **Performance Parity**: For this specific model (TinyLlama-1.1B) and workload size, the "Baseline" (un-tuned) configuration was technically already sufficient. The "Tuned" configuration provides identical throughput (RPS) but with much higher safety margins for scale.
+3.  **Latency stability**: At c=12/16, the tuned configuration shows slightly smoothed latency in some runs (e.g. Short c=12 dropped from 1.12s to 0.96s), likely due to better batch scheduling capacity (max-seqs=64).
+

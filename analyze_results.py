@@ -6,6 +6,14 @@ import glob
 from datetime import datetime, timedelta
 
 import json
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Analyze Load Test Results")
+    parser.add_argument("--k6-dir", default="loadtest/logs/k6", help="Directory containing k6 JSON logs")
+    parser.add_argument("--gpu-dir", default="loadtest/logs/gpu", help="Directory containing GPU CSV logs")
+    parser.add_argument("--output", default="docs/load_test_report.md", help="Output Markdown report path")
+    return parser.parse_args()
 
 def parse_k6_output(filepath):
     """Parses k6 JSON summary to extract RPS and p95 latency."""
@@ -93,13 +101,13 @@ def parse_gpu_log_lines(filepath):
         print(f"Error parsing GPU log {filepath}: {e}")
     return records
 
-def analyze_sweep(sweep_type, log_dir, gpu_log_pattern):
+def analyze_sweep(sweep_type, log_dir, gpu_dir, gpu_log_pattern):
     print(f"\nAnalyzing {sweep_type} sweep results...")
     
     # Find all GPU logs
-    gpu_logs = glob.glob(os.path.join('loadtest', 'logs', 'gpu', gpu_log_pattern))
+    gpu_logs = glob.glob(os.path.join(gpu_dir, gpu_log_pattern))
     if not gpu_logs:
-        print(f"No GPU log found for {sweep_type} sweep in loadtest/logs/gpu/{gpu_log_pattern}")
+        print(f"No GPU log found for {sweep_type} sweep in {gpu_dir}/{gpu_log_pattern}")
         return
 
     # Load and concat all GPU logs
@@ -166,8 +174,8 @@ def generate_report(results, output_file="docs/load_test_report.md"):
         f.write("**Hardware Configuration**: NVIDIA GeForce RTX 3060 (Single GPU)\n\n")
         
         f.write("## Executive Summary\n")
-        f.write("Load tests were conducted using `hey` with varying concurrency levels (1-16) on both Short (64 tokens) and Long (256 tokens) payloads.\n")
-        f.write("The system demonstrates effective scaling up to c=4 for short queries. Long queries are compute-bound.\n\n")
+        f.write("Load tests were conducted using `k6` (via Kubernetes Jobs) to verify system stability and performance boundaries.\n")
+        f.write("The results below cover Requests Per Second (RPS), Latency (p95), and Resource Utilization.\n\n")
 
         for sweep_type in ['short', 'long']:
             sweep_results = [r for r in results if r['type'] == sweep_type]
@@ -194,22 +202,26 @@ def generate_report(results, output_file="docs/load_test_report.md"):
         f.write("- **Tools**: `hey` is good for quick baselines. For realistic scenarios, use `Locust` (Python) or `k6` (JS) to simulate user sessions and variable wait times.\n")
 
 if __name__ == "__main__":
+    args = parse_args()
     combined_results = []
     
     # Short
-    if os.path.exists('loadtest/logs/k6'):
-        res = analyze_sweep('short', 'loadtest/logs/k6', '../gpu/short_*.csv')
+    if os.path.exists(args.k6_dir):
+        # Determine strict pattern for GPU based on sweep type
+        # Assuming filename format: payload_*.csv in gpu_dir
+        res = analyze_sweep('short', args.k6_dir, args.gpu_dir, 'short_*.csv')
         if res:
             for r in res: r['type'] = 'short'
             combined_results.extend(res)
             
-        # Long
-        res = analyze_sweep('long', 'loadtest/logs/k6', '../gpu/long_*.csv')
+        # Long (only if files exist/requested, usually mixed in same dir)
+        # Check if any long logs exist contextually or just try
+        res = analyze_sweep('long', args.k6_dir, args.gpu_dir, 'long_*.csv')
         if res:
              for r in res: r['type'] = 'long'
              combined_results.extend(res)
 
     if combined_results:
-        generate_report(combined_results)
-        print("Report generated at docs/load_test_report.md")
+        generate_report(combined_results, args.output)
+        print(f"Report generated at {args.output}")
 

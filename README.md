@@ -43,6 +43,7 @@ Each phase below links to a standalone Markdown doc intended to live under `./do
 - [Phase 3 — Investigation (The “Stall”)](docs/phase-3-investigation-stall.md)
 - [Phase 4 — Stabilization (k6 + Ingress tuning)](docs/phase-4-stabilization-k6-ingress.md)
 - [Phase 5 — Verification & Results (Matrix sweep)](docs/phase-5-verification-results.md)
+- [Phase 6 — Advanced Verification (Stress Test)](docs/phase-6-advanced-verification.md)
 
 Quick links:
 - 📊 [Load Test Report](docs/load_test_report.md)

@@ -3,28 +3,26 @@
 **Hardware Configuration**: NVIDIA GeForce RTX 3060 (Single GPU)
 
 ## Executive Summary
-Load tests were conducted using `hey` with varying concurrency levels (1-16) on both Short (64 tokens) and Long (256 tokens) payloads.
-The system demonstrates effective scaling up to c=4 for short queries. Long queries are compute-bound.
+Load tests were conducted using `k6` (via Kubernetes Jobs) to verify system stability and performance boundaries.
+The results below cover Requests Per Second (RPS), Latency (p95), and Resource Utilization.
 
 ## Short Sweep Results
 | Concurrency | RPS | p95 Latency (s) | Avg GPU Util % | Max Mem (MiB) |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | 1.71 | 0.6632 | 81.8 | 11368.0 |
-| 2 | 3.12 | 0.6727 | 79.1 | 11423.0 |
-| 4 | 5.76 | 0.7456 | 72.1 | 11423.0 |
-| 8 | 10.79 | 0.8627 | 69.8 | 11423.0 |
-| 12 | 15.79 | 0.9556 | 65.3 | 11423.0 |
-| 16 | 19.56 | 1.0753 | 61.1 | 11419.0 |
+| 20 | 23.02 | 1.1310 | 55.9 | 11474.0 |
+| 24 | 28.18 | 1.0371 | 55.6 | 11531.0 |
+| 32 | 33.03 | 1.2501 | 54.8 | 11531.0 |
+| 48 | 37.66 | 1.5463 | 53.8 | 11544.0 |
+| 64 | 48.06 | 1.6137 | 51.1 | 11544.0 |
 
 ## Long Sweep Results
 | Concurrency | RPS | p95 Latency (s) | Avg GPU Util % | Max Mem (MiB) |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | 0.44 | 2.4312 | 83.0 | 11356.0 |
-| 2 | 0.79 | 2.7223 | 83.9 | 11394.0 |
-| 4 | 1.54 | 2.6554 | 84.3 | 11398.0 |
-| 8 | 2.93 | 2.7723 | 80.7 | 11404.0 |
-| 12 | 4.29 | 3.1446 | 80.7 | 11441.0 |
-| 16 | 5.47 | 3.2269 | 76.4 | 11471.0 |
+| 20 | 6.52 | 3.2544 | 74.4 | 11522.0 |
+| 24 | 7.87 | 3.2147 | 73.7 | 11529.0 |
+| 32 | 9.39 | 3.5629 | 72.9 | 11529.0 |
+| 48 | 12.42 | 4.0375 | 71.9 | 11529.0 |
+| 64 | 14.93 | 4.3719 | 66.7 | 11529.0 |
 
 ## Production Readiness Guide
 ### 1. Observability

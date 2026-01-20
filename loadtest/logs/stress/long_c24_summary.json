@@ -1,0 +1,253 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+     execution: local
+        script: /script/load_test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 24 max VUs, 30m30s max duration (incl. graceful stop):
+              * contacts: 192 iterations shared among 24 VUs (maxDuration: 30m0s, gracefulStop: 30s)
+
+
+running (00m01.0s), 24/24 VUs, 0 complete and 0 interrupted iterations
+contacts   [   0% ] 24 VUs  00m01.0s/30m0s  000/192 shared iters
+
+running (00m02.0s), 24/24 VUs, 0 complete and 0 interrupted iterations
+contacts   [   0% ] 24 VUs  00m02.0s/30m0s  000/192 shared iters
+
+running (00m03.0s), 24/24 VUs, 0 complete and 0 interrupted iterations
+contacts   [   0% ] 24 VUs  00m03.0s/30m0s  000/192 shared iters
+
+running (00m04.0s), 24/24 VUs, 24 complete and 0 interrupted iterations
+contacts   [  12% ] 24 VUs  00m04.0s/30m0s  024/192 shared iters
+
+running (00m05.0s), 24/24 VUs, 24 complete and 0 interrupted iterations
+contacts   [  12% ] 24 VUs  00m05.0s/30m0s  024/192 shared iters
+
+running (00m06.0s), 24/24 VUs, 24 complete and 0 interrupted iterations
+contacts   [  12% ] 24 VUs  00m06.0s/30m0s  024/192 shared iters
+
+running (00m07.0s), 24/24 VUs, 48 complete and 0 interrupted iterations
+contacts   [  25% ] 24 VUs  00m07.0s/30m0s  048/192 shared iters
+
+running (00m08.0s), 24/24 VUs, 48 complete and 0 interrupted iterations
+contacts   [  25% ] 24 VUs  00m08.0s/30m0s  048/192 shared iters
+
+running (00m09.0s), 24/24 VUs, 48 complete and 0 interrupted iterations
+contacts   [  25% ] 24 VUs  00m09.0s/30m0s  048/192 shared iters
+
+running (00m10.0s), 24/24 VUs, 72 complete and 0 interrupted iterations
+contacts   [  38% ] 24 VUs  00m10.0s/30m0s  072/192 shared iters
+
+running (00m11.0s), 24/24 VUs, 72 complete and 0 interrupted iterations
+contacts   [  38% ] 24 VUs  00m11.0s/30m0s  072/192 shared iters
+
+running (00m12.0s), 24/24 VUs, 72 complete and 0 interrupted iterations
+contacts   [  38% ] 24 VUs  00m12.0s/30m0s  072/192 shared iters
+
+running (00m13.0s), 24/24 VUs, 96 complete and 0 interrupted iterations
+contacts   [  50% ] 24 VUs  00m13.0s/30m0s  096/192 shared iters
+
+running (00m14.0s), 24/24 VUs, 96 complete and 0 interrupted iterations
+contacts   [  50% ] 24 VUs  00m14.0s/30m0s  096/192 shared iters
+
+running (00m15.0s), 24/24 VUs, 96 complete and 0 interrupted iterations
+contacts   [  50% ] 24 VUs  00m15.0s/30m0s  096/192 shared iters
+
+running (00m16.0s), 24/24 VUs, 120 complete and 0 interrupted iterations
+contacts   [  62% ] 24 VUs  00m16.0s/30m0s  120/192 shared iters
+
+running (00m17.0s), 24/24 VUs, 120 complete and 0 interrupted iterations
+contacts   [  62% ] 24 VUs  00m17.0s/30m0s  120/192 shared iters
+
+running (00m18.0s), 24/24 VUs, 120 complete and 0 interrupted iterations
+contacts   [  62% ] 24 VUs  00m18.0s/30m0s  120/192 shared iters
+
+running (00m19.0s), 24/24 VUs, 144 complete and 0 interrupted iterations
+contacts   [  75% ] 24 VUs  00m19.0s/30m0s  144/192 shared iters
+
+running (00m20.0s), 24/24 VUs, 144 complete and 0 interrupted iterations
+contacts   [  75% ] 24 VUs  00m20.0s/30m0s  144/192 shared iters
+
+running (00m21.0s), 24/24 VUs, 144 complete and 0 interrupted iterations
+contacts   [  75% ] 24 VUs  00m21.0s/30m0s  144/192 shared iters
+
+running (00m22.0s), 24/24 VUs, 168 complete and 0 interrupted iterations
+contacts   [  88% ] 24 VUs  00m22.0s/30m0s  168/192 shared iters
+
+running (00m23.0s), 24/24 VUs, 168 complete and 0 interrupted iterations
+contacts   [  88% ] 24 VUs  00m23.0s/30m0s  168/192 shared iters
+
+running (00m24.0s), 24/24 VUs, 168 complete and 0 interrupted iterations
+contacts   [  88% ] 24 VUs  00m24.0s/30m0s  168/192 shared iters
+
+
+  █ THRESHOLDS 
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 192     7.86764/s
+    checks_succeeded...: 100.00% 192 out of 192
+    checks_failed......: 0.00%   0 out of 192
+
+    ✓ status is 200
+
+    HTTP
+    http_req_duration..............: avg=3.05s min=2.99s med=3s max=3.21s p(90)=3.21s p(95)=3.21s
+      { expected_response:true }...: avg=3.05s min=2.99s med=3s max=3.21s p(90)=3.21s p(95)=3.21s
+    http_req_failed................: 0.00%  0 out of 192
+    http_reqs......................: 192    7.86764/s
+
+    EXECUTION
+    iteration_duration.............: avg=3.04s min=2.99s med=3s max=3.17s p(90)=3.17s p(95)=3.17s
+    iterations.....................: 192    7.86764/s
+    vus............................: 24     min=24       max=24
+    vus_max........................: 24     min=24       max=24
+
+    NETWORK
+    data_received..................: 309 kB 13 kB/s
+    data_sent......................: 111 kB 4.6 kB/s
+
+
+
+
+running (00m24.4s), 00/24 VUs, 192 complete and 0 interrupted iterations
+contacts ✓ [ 100% ] 24 VUs  00m24.4s/30m0s  192/192 shared iters
+{
+    "metrics": {
+        "http_reqs": {
+            "count": 192,
+            "rate": 7.86763972329501
+        },
+        "http_req_tls_handshaking": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0
+        },
+        "http_req_sending": {
+            "min": 0.002502,
+            "med": 0.012732,
+            "max": 1.225621,
+            "p(90)": 0.08570010000000013,
+            "p(95)": 0.474106349999999,
+            "avg": 0.06789156249999999
+        },
+        "data_received": {
+            "rate": 12677.103299771115,
+            "count": 309369
+        },
+        "data_sent": {
+            "count": 111168,
+            "rate": 4555.363399787811
+        },
+        "iterations": {
+            "count": 192,
+            "rate": 7.86763972329501
+        },
+        "vus": {
+            "value": 24,
+            "min": 24,
+            "max": 24
+        },
+        "vus_max": {
+            "value": 24,
+            "min": 24,
+            "max": 24
+        },
+        "checks": {
+            "passes": 192,
+            "fails": 0,
+            "value": 1
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(95)": 3214.7457199,
+            "avg": 3050.098703468752,
+            "min": 2993.910313,
+            "med": 3002.636731,
+            "max": 3215.794173,
+            "p(90)": 3214.0927643
+        },
+        "http_req_receiving": {
+            "med": 0.070325,
+            "max": 1.681657,
+            "p(90)": 1.1326859,
+            "p(95)": 1.3306293499999993,
+            "avg": 0.40601269791666666,
+            "min": 0.00731
+        },
+        "http_req_duration": {
+            "avg": 3050.098703468752,
+            "min": 2993.910313,
+            "med": 3002.636731,
+            "max": 3215.794173,
+            "p(90)": 3214.0927643,
+            "p(95)": 3214.7457199
+        },
+        "iteration_duration": {
+            "p(90)": 3173.9133345,
+            "p(95)": 3174.5997422,
+            "avg": 3045.3771366041656,
+            "min": 2993.969715,
+            "med": 3002.7095375,
+            "max": 3175.714137
+        },
+        "http_req_blocked": {
+            "avg": 0.22921559895833357,
+            "min": 0.00056,
+            "med": 0.00228,
+            "max": 2.417315,
+            "p(90)": 1.3932076,
+            "p(95)": 1.9940708999999994
+        },
+        "http_req_waiting": {
+            "p(90)": 3214.0430612,
+            "p(95)": 3214.40188895,
+            "avg": 3049.624799208334,
+            "min": 2993.326529,
+            "med": 3002.063791,
+            "max": 3214.929115
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 192,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "http_req_connecting": {
+            "p(90)": 0.08303540000000002,
+            "p(95)": 0.20458664999999937,
+            "avg": 0.033016192708333336,
+            "min": 0,
+            "med": 0,
+            "max": 0.807975
+        }
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "status is 200": {
+                    "name": "status is 200",
+                    "path": "::status is 200",
+                    "id": "6210a8cd14cd70477eba5c5e4cb3fb5f",
+                    "passes": 192,
+                    "fails": 0
+                }
+            }
+    }
+}
