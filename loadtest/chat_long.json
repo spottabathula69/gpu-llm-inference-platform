@@ -1,0 +1,10 @@
+{
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "messages": [
+    { "role": "system", "content": "You are a helpful assistant. Provide a structured answer with bullet points." },
+    { "role": "user", "content": "Explain how an LLM inference server works end-to-end (tokenization, prefill, decode, batching). Include operational concerns like latency, throughput, and errors." }
+  ],
+  "max_tokens": 256,
+  "temperature": 0.2,
+  "stream": false
+}

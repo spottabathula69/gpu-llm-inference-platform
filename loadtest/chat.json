@@ -1,0 +1,6 @@
+{
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "messages": [{"role":"user","content":"Summarize Kubernetes in 1 sentence."}],
+  "max_tokens": 80,
+  "temperature": 0.2
+}

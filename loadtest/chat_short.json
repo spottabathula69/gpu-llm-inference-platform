@@ -1,0 +1,10 @@
+{
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "messages": [
+    { "role": "system", "content": "You are a helpful assistant. Answer concisely." },
+    { "role": "user", "content": "In 2 sentences, explain what Kubernetes is." }
+  ],
+  "max_tokens": 64,
+  "temperature": 0.2,
+  "stream": false
+}

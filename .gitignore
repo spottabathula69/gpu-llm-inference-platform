@@ -1,0 +1,15 @@
+# Binaries and archives
+k6
+*.tar.gz
+
+# Logs and temporary execution output
+*.log
+debug_hey_output.txt
+manual_completion.sh
+
+# OS metadata
+README.md:Zone.Identifier
+*:Zone.Identifier
+
+# Verify if we want to ignore raw logs or keep them
+# keeping logs for now as per project context, but usually these are ignored.

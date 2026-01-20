@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k6-script
+data:
+  load_test.js: |
+    import http from 'k6/http';
+    import { check } from 'k6';
+
+    const payloadShort = JSON.stringify({
+      "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "messages": [
+        { "role": "system", "content": "You are a helpful assistant. Answer concisely." },
+        { "role": "user", "content": "In 2 sentences, explain what Kubernetes is." }
+      ],
+      "max_tokens": 64,
+      "temperature": 0.2,
+      "stream": false
+    });
+
+    const payloadLong = JSON.stringify({
+      "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "messages": [
+        { "role": "system", "content": "You are a helpful assistant. Provide a structured answer with bullet points." },
+        { "role": "user", "content": "Explain how an LLM inference server works end-to-end (tokenization, prefill, decode, batching). Include operational concerns like latency, throughput, and errors." }
+      ],
+      "max_tokens": 256,
+      "temperature": 0.2,
+      "stream": false
+    });
+
+    export const options = {
+      scenarios: {
+        contacts: {
+          executor: 'shared-iterations',
+          vus: parseInt(__ENV.VUS) || 1,
+          iterations: parseInt(__ENV.TOTAL_N) || 10,
+          maxDuration: '30m',
+        },
+      },
+      thresholds: {
+        http_req_failed: ['rate<0.01'],
+      },
+    };
+
+    export default function () {
+      // Use Ingress Controller explicitly to test timeouts (requires Host header)
+      // Service: ingress-nginx-controller.ingress-nginx.svc.cluster.local
+      // But verify namespace of ingress controller first.
+      // Fallback: Internal Service if Ingress is too complex for this step.
+      // User want to proceed. Let's start with vLLM Service directly for stability.
+      const url = 'http://vllm-service.default.svc.cluster.local:8000/v1/chat/completions';
+      const payloadType = __ENV.PAYLOAD_TYPE || 'short';
+      const payloadStr = payloadType === 'long' ? payloadLong : payloadShort;
+
+      const params = {
+        headers: { 
+            'Content-Type': 'application/json',
+            // 'Host': 'llm.local' // Uncomment if using Ingress Controller
+        },
+        timeout: '600s',
+      };
+
+      const res = http.post(url, payloadStr, params);
+      check(res, { 'status is 200': (r) => r.status === 200 });
+    }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: k6-run-temp
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+      - name: k6
+        image: grafana/k6:latest
+        command: ["sh", "-c", "k6 run /script/load_test.js --summary-export /tmp/summary.json && cat /tmp/summary.json"]
+        env:
+        - name: VUS
+          value: "REPLACE_VUS"
+        - name: TOTAL_N
+          value: "REPLACE_N"
+        - name: PAYLOAD_TYPE
+          value: "REPLACE_PAYLOAD"
+        volumeMounts:
+        - name: script-volume
+          mountPath: /script
+      restartPolicy: Never
+      volumes:
+      - name: script-volume
+        configMap:
+          name: k6-script
