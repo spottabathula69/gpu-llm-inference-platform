@@ -9,6 +9,22 @@
 - **Hardware**: Single NVIDIA GeForce RTX 3060 (12GB VRAM).
 - **Testing**: `k6` (primary load testing), `nvidia-smi` (GPU monitoring). (`hey` was used early for baselines/debug.)
 
+## Architecture
+
+```mermaid
+graph LR
+    User[User / Test Harness] -- HTTP POST --> Ingress[NGINX Ingress]
+    Ingress -- Proxy (Timeout: 600s) --> Svc[vLLM Service]
+    Svc --> Pod[vLLM Pod]
+    Pod -- CUDA --> GPU[NVIDIA RTX 3060]
+    
+    subgraph Kubernetes Cluster
+        Ingress
+        Svc
+        Pod
+    end
+```
+
 ---
 
 ## 2. Project Phases (Documentation)
