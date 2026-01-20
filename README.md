@@ -70,6 +70,9 @@ Improved test stability by tightening methodology (timeouts, request counts) and
 ### Phase 5: Verification & Results
 Executed a full matrix sweep (Short vs. Long payloads, concurrency 1..16) and captured RPS, p95 latency, GPU utilization, and GPU memory.
 
+### Phase 6: Advanced Verification (Stress & UX)
+Pushed the system to **64 concurrent users**, achieving **48 RPS** (Short) and **15 RPS** (Long) with **0 errors**, proving extreme stability. Validated "Chat Feel" with a streaming probe, measuring **56ms** Time-To-First-Token (TTFT).
+
 ---
 
 ## 4. Documentation & Resources
@@ -77,6 +80,8 @@ Executed a full matrix sweep (Short vs. Long payloads, concurrency 1..16) and ca
 ### 📊 Performance Analysis
 - [Load Test Report](docs/load_test_report.md)
   - Detailed breakdown of RPS, latency (p95), and GPU metrics for all concurrency levels.
+- [Stress Test Report](docs/stress_test_report.md)
+  - High-concurrency crash testing results (up to c=64).
 
 ### 🧭 Production Readiness (Phase 6+)
 - [Production Readiness Notes](docs/production_readiness.md)
