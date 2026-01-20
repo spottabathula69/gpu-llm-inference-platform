@@ -9,6 +9,13 @@
 - **Hardware**: Single NVIDIA GeForce RTX 3060 (12GB VRAM).
 - **Testing**: `k6` (primary load testing), `nvidia-smi` (GPU monitoring). (`hey` was used early for baselines/debug.)
 
+## Cluster Setup (Quick)
+To ensure the NVIDIA driver loads correctly (avoiding Helm/device-plugin issues), start Minikube with GPU passthrough enabled:
+```bash
+minikube start --driver=docker --container-runtime=docker --gpus=all
+minikube addons enable ingress
+```
+
 ## Architecture
 
 ```mermaid

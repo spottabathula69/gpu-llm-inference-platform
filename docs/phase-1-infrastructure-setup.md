@@ -16,7 +16,7 @@ Stand up a local, production-reflective Kubernetes inference stack on **Windows 
 
 ### 1) Start Minikube with ingress enabled
 ```bash
-minikube start --driver=docker
+minikube start --driver=docker --container-runtime=docker --gpus=all
 minikube addons enable ingress
 ```
 
