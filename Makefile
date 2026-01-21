@@ -13,11 +13,22 @@ setup: ## Start Minikube with GPU support and wait for it
 	kubectl wait --for=condition=ready node --all --timeout=60s
 	@echo "Cluster is ready. Run 'make deploy' next."
 
-deploy: ## Deploy vLLM to the cluster
+deploy: ## Deploy vLLM (App + Ingress + Security)
+	# Security (Cert-Manager + TLS)
+	kubectl apply -f infra/k8s/security/cluster-issuer.yaml
+	kubectl apply -f infra/k8s/security/certificate.yaml
+	# App & Ingress
 	kubectl apply -f infra/k8s/apps/vllm/deployment.yaml
+	kubectl apply -f infra/k8s/apps/vllm/ingress.yaml
 	@echo "Deployment applied. Waiting for pod to be ready..."
 	kubectl wait --for=condition=ready pod -l app=vllm --timeout=300s
-	@echo "vLLM is Ready!"
+	@echo "vLLM is Ready! (Ensure 'llm.local' is in your /etc/hosts)"
+
+deploy-monitor: ## Deploy Observability Stack (Prometheus + Dashboard)
+	kubectl apply -f infra/k8s/observability/prometheus-rules.yaml
+	kubectl apply -f infra/k8s/observability/vllm-servicemonitor.yaml
+	kubectl apply -f infra/k8s/observability/dcgm-exporter.yaml
+	@echo "Observability Stack Deployed."
 
 benchmark: ## Run standard performance sweep (c=1..16, Short+Long)
 	@echo "Running Standard Benchmark Sweep..."

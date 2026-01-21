@@ -21,10 +21,13 @@ To run this project, ensure you have the following tools installed:
 | **Make** | 4.3+ | Automation (see `Makefile`). |
 | **k6** | v0.47+ | Load testing binary. |
 
-> **Tip**: For a better experience, enable bash completion for kubectl:
+> ```
+>
+> **Important**: Add the following to your `/etc/hosts` (use `minikube ip` to find the IP):
 > ```bash
-> source <(kubectl completion bash)
-> echo "source <(kubectl completion bash)" >> ~/.bashrc
+> 127.0.0.1  llm.local  # If using 'minikube tunnel'
+> # OR
+> 192.168.49.2  llm.local # If using standard minikube ip
 > ```
 
 ## Cluster Setup (Quick)
@@ -147,7 +150,8 @@ Secured the transport layer and protected against DoS.
 ```bash
 # short: 64 tokens
 k6 run loadtest/k6_load_test.js \
-  -e BASE_URL="http://llm.local/v1/chat/completions" \
+  -e BASE_URL="https://llm.local/v1/chat/completions" \
+  -e K6_INSECURE_SKIP_TLS_VERIFY=true \
   -e PAYLOAD_TYPE=short \
   -e VUS=4 -e ITERATIONS=192
 ```
@@ -156,7 +160,8 @@ k6 run loadtest/k6_load_test.js \
 ```bash
 # long: 256 tokens
 k6 run loadtest/k6_load_test.js \
-  -e BASE_URL="http://llm.local/v1/chat/completions" \
+  -e BASE_URL="https://llm.local/v1/chat/completions" \
+  -e K6_INSECURE_SKIP_TLS_VERIFY=true \
   -e PAYLOAD_TYPE=long \
   -e VUS=2 -e ITERATIONS=96
 ```
@@ -188,7 +193,8 @@ The endpoint is now secured. You must provide the API Key (default: `sk-admin-to
 **To run k6 with Auth:**
 ```bash
 k6 run loadtest/k6_load_test.js \
-  -e BASE_URL="http://llm.local/v1/chat/completions" \
+  -e BASE_URL="https://llm.local/v1/chat/completions" \
+  -e K6_INSECURE_SKIP_TLS_VERIFY=true \
   -e API_KEY="sk-admin-token-12345" \
   -e PAYLOAD_TYPE=short -e VUS=1 -e ITERATIONS=10
 ```
