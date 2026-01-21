@@ -37,8 +37,10 @@ spec:
             name: http
         resources:
           limits:
-            nvidia.com/gpu: 1
+            nvidia.com/gpu: 1 # This locks 1 physical GPU (12GB VRAM)
             cpu: "4"
+            # System RAM (CPU Memory), NOT VRAM.
+            # 8B Model needs >12GB System RAM temporarily to load weights from disk.
             memory: "16Gi"
           requests:
             cpu: "2"
