@@ -48,6 +48,7 @@ Each phase below links to a standalone Markdown doc intended to live under `./do
 - [Phase 7 — Reproducibility & Polish (Makefile)](walkthrough.md#reproducibility-phase-7)
 - [Phase 8 — Observability Implementation](docs/phase-8-observability.md)
 - [Phase 9 — Security (API Key Auth)](infra/k8s/apps/vllm/deployment.yaml)
+- [Phase 10 — Reliability (Alerting & SLOs)](docs/phase-10-reliability.md)
 
 Quick links:
 - 📊 [Load Test Report](docs/load_test_report.md)
@@ -90,6 +91,12 @@ Secured the critical inference endpoint using **native vLLM API Key Authenticati
 - Created Kubernetes Secret `vllm-api-key`.
 - Updated Deployment with `--api-key`.
 - Validated via `curl` (401 vs 200) and Load Tests (`Authorization: Bearer ...`).
+
+### Phase 10: Reliability (Alerting & SLOs)
+Established automated safety nets for production.
+- **SLOs**: Defined Latency (<200ms), Queue Size (<20), and Error Rate (<0.1%) objectives.
+- **Alerts**: Deployed `PrometheusRule` to fire when thresholds are breached.
+- **Verification**: Simulated overload (c=64) successfully triggered "Critical Saturation" alerts.
 
 ---
 
