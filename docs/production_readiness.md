@@ -11,23 +11,19 @@
 - **Request metrics**: vLLM metrics (TTFT, TPOT, Queue) are visualized.
 - **Next Step**: Configure **AlertManager** to Slack/PagerDuty when `vllm:num_requests_waiting > 10` or `gpu_util > 95%`.
 
-## Reliability & SLOs
-- Define SLOs (e.g., p95 latency under target at chosen concurrency).
-- Alert on: error rate, tail latency, GPU memory pressure, throttling.
-
-## Autoscaling (when multi-GPU / multi-node)
-- HPA/KEDA driven by queue depth and request latency.
-- Consider separate pools for latency-sensitive vs batch/throughput workloads.
+## Reliability & SLOs (Implemented ✅)
+- **Status**: Implemented in Phase 10 via `PrometheusRule`.
+- **Alerts**: Active for High Latency (TTFT > 200ms), Saturation (Queue > 20), and Errors.
+- **Next Step**: Configure AlertManager receivers (Slack/PagerDuty).
 
 ## Traffic management
-- Rate limiting / per-tenant quotas.
-- Timeouts aligned across client → ingress → service.
-- Canary rollouts and safe rollback.
+- **Rate Limiting**: Configure NGINX Ingress to limit RPS per IP to prevent DoS.
+- **Timeouts**: Align client/proxy timeouts (currently 600s).
 
-## Security (Critical Next Step 🚨)
-- **Authentication**: Currently, the API is open (`http://.../v1/...`). Use **OAuth2 Proxy** or an API Gateway (like Kong or Ambassador) to enforce AuthN.
-- **TLS/SSL**: Terminate HTTPS at the Ingress layer using `cert-manager` and Let's Encrypt.
-- **Network Policies**: Isolate the `vllm` namespace so only the Ingress Controller can talk to it.
+## Security
+- **Authentication (Implemented ✅)**: API Key enforcement is active (Phase 9).
+- **TLS/SSL (Next Step)**: Terminate HTTPS at the Ingress layer using `cert-manager`.
+- **Network Policies**: Isolate the `vllm` namespace.
 
 ## Autoscaling (Advanced)
 - **Horizontal Pod Autoscaling (HPA)**:
