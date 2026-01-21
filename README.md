@@ -9,6 +9,24 @@
 - **Hardware**: Single NVIDIA GeForce RTX 3060 (12GB VRAM).
 - **Testing**: `k6` (primary load testing), `nvidia-smi` (GPU monitoring). (`hey` was used early for baselines/debug.)
 
+## Prerequisites
+To run this project, ensure you have the following tools installed:
+
+| Tool | Version (Tested) | Purpose |
+| :--- | :--- | :--- |
+| **Minikube** | v1.32+ | Kubernetes local cluster. |
+| **Kubectl** | v1.28+ | Cluster management CLI. |
+| **Helm** | v3.12+ | Package manager (Prometheus stack). |
+| **Python** | 3.10+ | Scripts (`ttft_probe.py`, `analyze_results.py`). |
+| **Make** | 4.3+ | Automation (see `Makefile`). |
+| **k6** | v0.47+ | Load testing binary. |
+
+> **Tip**: For a better experience, enable bash completion for kubectl:
+> ```bash
+> source <(kubectl completion bash)
+> echo "source <(kubectl completion bash)" >> ~/.bashrc
+> ```
+
 ## Cluster Setup (Quick)
 To ensure the NVIDIA driver loads correctly (avoiding Helm/device-plugin issues), start Minikube with GPU passthrough enabled:
 ```bash
