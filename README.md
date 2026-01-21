@@ -142,4 +142,3 @@ To access the Dashboard:
 3. View **vLLM Inference Metrics** dashboard.
 
 ![vLLM Dashboard](docs/images/vllm_dashboard.png)
-*(Note: Run `make benchmark` to populate data, then save a screenshot here)*
