@@ -29,9 +29,9 @@ benchmark-stress: ## Run high-concurrency stress test (c=20..64)
 
 report: ## Generate performance reports from logs
 	@echo "Generating Standard Report..."
-	python3 analyze_results.py --k6-dir loadtest/logs/k6 --gpu-dir loadtest/logs/gpu --output docs/load_test_report.md
+	python3 scripts/analyze_results.py --k6-dir loadtest/logs/k6 --gpu-dir loadtest/logs/gpu --output docs/load_test_report.md
 	@echo "Generating Stress Test Report..."
-	python3 analyze_results.py --k6-dir loadtest/logs/stress --gpu-dir loadtest/logs/gpu_stress --output docs/stress_test_report.md
+	python3 scripts/analyze_results.py --k6-dir loadtest/logs/stress --gpu-dir loadtest/logs/gpu_stress --output docs/stress_test_report.md
 
 clean: ## Remove all benchmark logs
 	rm -rf loadtest/logs/k6/* loadtest/logs/gpu/*
