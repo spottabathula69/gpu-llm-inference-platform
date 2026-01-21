@@ -24,6 +24,16 @@ deploy: ## Deploy vLLM (App + Ingress + Security)
 	kubectl wait --for=condition=ready pod -l app=vllm --timeout=300s
 	@echo "vLLM is Ready! (Ensure 'llm.local' is in your /etc/hosts)"
 
+deploy-8b: ## Deploy Llama 3 8B (Shut down default deployment first)
+	@echo "Switching to Llama-3-8B-AWQ..."
+	# Scale down standard deployment to free GPU
+	-kubectl scale deployment vllm --replicas=0
+	# Apply 8B deployment
+	kubectl apply -f infra/k8s/apps/vllm/deployment_llama8B.yaml
+	@echo "Waiting for 8B Pod to be ready (Downloading 5GB model...)..."
+	kubectl wait --for=condition=ready pod -l variant=llama-8b --timeout=900s
+	@echo "Llama 3 8B is Ready!"
+
 deploy-monitor: ## Deploy Observability Stack (Prometheus + Dashboard)
 	kubectl apply -f infra/k8s/observability/prometheus-rules.yaml
 	kubectl apply -f infra/k8s/observability/vllm-servicemonitor.yaml
