@@ -23,6 +23,7 @@ spec:
           - --model=TinyLlama/TinyLlama-1.1B-Chat-v1.0
           - --host=0.0.0.0
           - --port=8000
+          - --api-key=$(VLLM_API_KEY)
           # Good starter settings (we’ll tune later)
           - --gpu-memory-utilization=0.85
           - --max-num-seqs=64
@@ -44,6 +45,9 @@ spec:
           httpGet:
             path: /v1/models
             port: 8000
+            httpHeaders:
+              - name: Authorization
+                value: Bearer sk-admin-token-12345
           initialDelaySeconds: 60
           periodSeconds: 10
           failureThreshold: 12
@@ -51,16 +55,27 @@ spec:
           httpGet:
             path: /v1/models
             port: 8000
+            httpHeaders:
+              - name: Authorization
+                value: Bearer sk-admin-token-12345
           failureThreshold: 60
           periodSeconds: 60
         livenessProbe:
           httpGet:
             path: /v1/models
             port: 8000
+            httpHeaders:
+              - name: Authorization
+                value: Bearer sk-admin-token-12345
           initialDelaySeconds: 15
           periodSeconds: 20
           failureThreshold: 10
         env:
+          - name: VLLM_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: vllm-api-key
+                key: token
           # vLLM will download from Hugging Face; this makes it non-interactive.
           - name: HF_HUB_DISABLE_TELEMETRY
             value: "1"

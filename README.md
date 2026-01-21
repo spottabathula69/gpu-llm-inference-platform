@@ -142,3 +142,14 @@ To access the Dashboard:
 3. View **vLLM Inference Metrics** dashboard.
 
 ![vLLM Dashboard](docs/images/vllm_dashboard.png)
+
+## Security: Authentication
+The endpoint is now secured. You must provide the API Key (default: `sk-admin-token-12345`).
+
+**To run k6 with Auth:**
+```bash
+k6 run loadtest/k6_load_test.js \
+  -e BASE_URL="http://llm.local/v1/chat/completions" \
+  -e API_KEY="sk-admin-token-12345" \
+  -e PAYLOAD_TYPE=short -e VUS=1 -e ITERATIONS=10
+```

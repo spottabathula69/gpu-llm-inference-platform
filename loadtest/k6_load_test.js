@@ -42,10 +42,17 @@ export default function () {
     const payloadType = __ENV.PAYLOAD_TYPE || 'short';
     const payloadStr = payloadType === 'long' ? payloadLong : payloadShort;
 
+    const apiKey = __ENV.API_KEY || ''; // Optional: set API_KEY env var
     const params = {
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+        },
         timeout: '600s',
     };
+
+    if (apiKey) {
+        params.headers['Authorization'] = `Bearer ${apiKey}`;
+    }
 
     const res = http.post(url, payloadStr, params);
     check(res, { 'status is 200': (r) => r.status === 200 });

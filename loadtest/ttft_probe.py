@@ -4,6 +4,7 @@ import requests
 import statistics
 import argparse
 import sys
+import os
 import numpy as np
 
 def measure_streaming_metrics(url, model, prompt, max_tokens=256):
@@ -16,7 +17,11 @@ def measure_streaming_metrics(url, model, prompt, max_tokens=256):
     }
     
     headers = {"Content-Type": "application/json"}
-    
+    # Support API Key if provided in env
+    api_key = os.getenv("API_KEY", "sk-admin-token-12345") # Default to our known key for ease
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+
     print(f"Sending request to {url}...")
     print(f"Prompt: {prompt[:50]}...")
     

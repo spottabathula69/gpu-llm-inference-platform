@@ -83,12 +83,17 @@ spec:
         - name: TOTAL_N
           value: "REPLACE_N"
         - name: PAYLOAD_TYPE
-          value: "REPLACE_PAYLOAD"
+          value: "short" # Overridden by command
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: vllm-api-key
+              key: token
         volumeMounts:
-        - name: script-volume
+        - name: scripts-volume
           mountPath: /script
       restartPolicy: Never
       volumes:
-      - name: script-volume
+      - name: scripts-volume
         configMap:
           name: k6-script
