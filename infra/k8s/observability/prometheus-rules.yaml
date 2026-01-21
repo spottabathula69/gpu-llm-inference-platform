@@ -1,0 +1,40 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: vllm-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus # Matches default kube-prometheus-stack label selector
+spec:
+  groups:
+  - name: vllm.rules
+    rules:
+    # 1. Performance SLO: Time To First Token
+    - alert: vLLMHighLatency
+      expr: histogram_quantile(0.95, sum(rate(vllm:time_to_first_token_seconds_bucket[5m])) by (le)) > 0.2
+      for: 1m # Reduced from 5m for easier testing
+      labels:
+        severity: warning
+      annotations:
+        summary: "High TTFT Latency detected"
+        description: "95th percentile TTFT is {{ $value | printf \"%.3f\" }}s (threshold 0.2s)."
+
+    # 2. Saturation SLO: Request Queue
+    - alert: vLLMQueueSaturation
+      expr: vllm:num_requests_waiting > 20
+      for: 30s # Fast reaction to overload
+      labels:
+        severity: critical
+      annotations:
+        summary: "vLLM Request Queue is High"
+        description: "Waiting requests count is {{ $value }} (threshold 20)."
+
+    # 3. Resource SLO: GPU Cache
+    - alert: vLLMGPUCacheFull
+      expr: vllm:gpu_cache_usage_perc > 0.95
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "GPU KV Cache Near Full"
+        description: "GPU Cache usage is {{ $value | printf \"%.1f\" }}%."

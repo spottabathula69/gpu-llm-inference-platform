@@ -53,13 +53,19 @@ data:
       const payloadType = __ENV.PAYLOAD_TYPE || 'short';
       const payloadStr = payloadType === 'long' ? payloadLong : payloadShort;
 
+      const apiKey = __ENV.API_KEY || ''; // Optional: set API_KEY env var
       const params = {
-        headers: { 
+        headers: {
             'Content-Type': 'application/json',
             // 'Host': 'llm.local' // Uncomment if using Ingress Controller
         },
         timeout: '600s',
       };
+
+      if (apiKey) {
+          params.headers['Authorization'] = `Bearer ${apiKey}`;
+      }
+
 
       const res = http.post(url, payloadStr, params);
       check(res, { 'status is 200': (r) => r.status === 200 });
@@ -76,14 +82,14 @@ spec:
       containers:
       - name: k6
         image: grafana/k6:latest
-        command: ["sh", "-c", "k6 run /script/load_test.js --summary-export /tmp/summary.json && cat /tmp/summary.json"]
+        command: ["sh", "-c", "k6 run /script/load_test.js -e API_KEY=$API_KEY --summary-export /tmp/summary.json && cat /tmp/summary.json"]
         env:
         - name: VUS
           value: "REPLACE_VUS"
         - name: TOTAL_N
           value: "REPLACE_N"
         - name: PAYLOAD_TYPE
-          value: "short" # Overridden by command
+          value: "REPLACE_PAYLOAD"
         - name: API_KEY
           valueFrom:
             secretKeyRef:
