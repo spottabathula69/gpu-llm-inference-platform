@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"nginx.ingress.kubernetes.io/client-body-timeout":"60","nginx.ingress.kubernetes.io/client-max-body-size":"8m","nginx.ingress.kubernetes.io/proxy-connect-timeout":"30","nginx.ingress.kubernetes.io/proxy-read-timeout":"600","nginx.ingress.kubernetes.io/proxy-send-timeout":"600"},"name":"vllm","namespace":"default"},"spec":{"ingressClassName":"nginx","rules":[{"host":"llm.local","http":{"paths":[{"backend":{"service":{"name":"vllm-service","port":{"number":8000}}},"path":"/","pathType":"Prefix"}]}}]}}
+    nginx.ingress.kubernetes.io/client-body-timeout: "60"
+    nginx.ingress.kubernetes.io/client-max-body-size: 8m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    # Security: TLS
+    cert-manager.io/cluster-issuer: selfsigned-issuer
+    # Security: Rate Limiting
+    nginx.ingress.kubernetes.io/limit-rps: "10"
+    nginx.ingress.kubernetes.io/limit-burst: "20"
+  creationTimestamp: "2026-01-19T00:48:34Z"
+  generation: 1
+  name: vllm
+  namespace: default
+  resourceVersion: "97413"
+  uid: 4510c4b0-e7e8-4b24-8af1-0a780a49cbab
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: llm.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: vllm-service
+            port:
+              number: 8000
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.58.2
