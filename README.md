@@ -7,7 +7,7 @@ This project proves you can deploy, secure, and scale state-of-the-art models (l
 **Core Philosophy**:
 - **Cost Efficiency**: Running SOTA 8B models on <$300 GPUs via Quantization (AWQ).
 - **Production Readiness**: Implementing TLS, Auth, Rate Limiting, and SLOs typically reserved for cloud clusters.
-- **GitOps**: Everything defined as code (IaC) for reproducibility.
+- **Infrastructure as Code (IaC)**: Fully declarative Kubernetes manifests for reproducible deployments.
 
 **Key Components**
 - **Engine**: vLLM (TinyLlama-1.1B-Chat).
