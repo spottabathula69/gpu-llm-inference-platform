@@ -67,6 +67,7 @@ Each phase below links to a standalone Markdown doc intended to live under `./do
 - [Phase 8 — Observability Implementation](docs/phase-8-observability.md)
 - [Phase 9 — Security (API Key Auth)](infra/k8s/apps/vllm/deployment.yaml)
 - [Phase 10 — Reliability (Alerting & SLOs)](docs/phase-10-reliability.md)
+- [Phase 11 — Production Hardening (TLS & Traffic)](docs/phase-11-hardening.md)
 
 Quick links:
 - 📊 [Load Test Report](docs/load_test_report.md)
@@ -115,6 +116,12 @@ Established automated safety nets for production.
 - **SLOs**: Defined Latency (<200ms), Queue Size (<20), and Error Rate (<0.1%) objectives.
 - **Alerts**: Deployed `PrometheusRule` to fire when thresholds are breached.
 - **Verification**: Simulated overload (c=64) successfully triggered "Critical Saturation" alerts.
+
+### Phase 11: Production Hardening (TLS & Traffic)
+Secured the transport layer and protected against DoS.
+- **TLS**: Enabled HTTPS via `cert-manager` (Self-Signed).
+- **Traffic Control**: Enforced Rate Limits (10 RPS) on Ingress.
+- **Verification**: Blocked ~55% of burst traffic (20 VUs) with `503 Service Unavailable`.
 
 ---
 

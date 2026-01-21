@@ -45,6 +45,7 @@ data:
 
     export default function () {
       // Use Ingress Controller explicitly to test timeouts (requires Host header)
+      // Use Ingress Controller explicitly to test timeouts (requires Host header)
       // Service: ingress-nginx-controller.ingress-nginx.svc.cluster.local
       // But verify namespace of ingress controller first.
       // Fallback: Internal Service if Ingress is too complex for this step.
