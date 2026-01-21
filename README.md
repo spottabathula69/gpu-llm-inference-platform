@@ -47,6 +47,7 @@ Each phase below links to a standalone Markdown doc intended to live under `./do
 - [Phase 6 — Advanced Verification (Stress Test)](docs/phase-6-advanced-verification.md)
 - [Phase 7 — Reproducibility & Polish (Makefile)](walkthrough.md#reproducibility-phase-7)
 - [Phase 8 — Observability Implementation](docs/phase-8-observability.md)
+- [Phase 9 — Security (API Key Auth)](infra/k8s/apps/vllm/deployment.yaml)
 
 Quick links:
 - 📊 [Load Test Report](docs/load_test_report.md)
@@ -83,6 +84,12 @@ Created a unified `Makefile` for one-command deployment (`make deploy`) and benc
 Implemented a "Glass Box" stack with **Prometheus**, **Grafana**, and **DCGM Exporter**.
 - Real-time dashboards for GPU utilization, KV Cache usage, and Requests/sec.
 - Added Latency histograms (TTFT, TPOT) for deep performance insights.
+
+### Phase 9: Security (Authentication)
+Secured the critical inference endpoint using **native vLLM API Key Authentication**.
+- Created Kubernetes Secret `vllm-api-key`.
+- Updated Deployment with `--api-key`.
+- Validated via `curl` (401 vs 200) and Load Tests (`Authorization: Bearer ...`).
 
 ---
 
