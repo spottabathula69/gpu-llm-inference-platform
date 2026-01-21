@@ -26,12 +26,21 @@ spec:
   - host: llm.local
     http:
       paths:
+      # UI at root /
+      - backend:
+          service:
+            name: vllm-ui-service
+            port:
+              number: 8501
+        path: /
+        pathType: Prefix
+      # API at /v1/
       - backend:
           service:
             name: vllm-service
             port:
               number: 8000
-        path: /
+        path: /v1/
         pathType: Prefix
 status:
   loadBalancer:

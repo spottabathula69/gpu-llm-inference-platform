@@ -31,10 +31,16 @@ graph LR
 
 ## Verification
 1.  **Build**: `eval $(minikube docker-env) && docker build -t vllm-ui:latest web-ui/`
-2.  **Access**: Navigate to `https://llm.local/`.
+2.  **Access**:
+    ```bash
+    kubectl port-forward svc/vllm-ui-service 8501:8501
+    ```
+    Then open [http://localhost:8501/](http://localhost:8501/).
 3.  **Chat**: Send a query ("Who are you?") and verify the streaming response from Llama-3-8B.
 
-## troubleshooting
-If the UI cannot connect to the backend:
-*   Ensure the `VLLM_API_BASE` env var in `infra/k8s/apps/ui/deployment.yaml` points to `http://vllm-service:8000/v1`.
-*   Check Ingress logs for routing errors.
+## Troubleshooting
+If `curl` or browser fails:
+1.  **Check Ingress**: `kubectl get ingress -A` should show Address `127.0.0.1` or `192.168.x.x`.
+2.  **Tunnel**: Ensure `minikube tunnel` is running on the host.
+3.  **Hosts File**: Verify `llm.local` points to `127.0.0.1` (if tunnel) or `minikube ip` (if no tunnel).
+4.  **Bypass**: Use `kubectl port-forward svc/vllm-ui-service 8501:8501` and access `localhost:8501`.

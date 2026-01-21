@@ -100,6 +100,22 @@ Executed a full matrix sweep (Short vs. Long payloads, concurrency 1..16) and ca
 ### Phase 6: Advanced Verification (Stress & UX)
 Pushed the system to **64 concurrent users**, achieving **48 RPS** (Short) and **15 RPS** (Long) with **0 errors**, proving extreme stability. Validated "Chat Feel" with a streaming probe, measuring **56ms** Time-To-First-Token (TTFT).
 
+## 🌐 Accessing the UI & Metrics
+The most reliable way to access the services is via **Port Forwarding**.
+
+### 1. Run Port Forwarding
+Open a new terminal and run:
+```bash
+# Expose Chat UI to localhost:8501
+kubectl port-forward svc/vllm-ui-service 8501:8501 &
+
+# Expose Grafana to localhost:3000
+kubectl port-forward svc/prometheus-grafana -n monitoring 3000:80 &
+```
+
+### 2. Open in Browser
+*   **Chat UI**: [http://localhost:8501/](http://localhost:8501/)
+*   **Grafana**: [http://localhost:3000/](http://localhost:3000/) (Login: `admin` / `prom-operator`)
 ### Phase 7: Reproducibility
 Created a unified `Makefile` for one-command deployment (`make deploy`) and benchmarking (`make benchmark`), ensuring consistent environments for all users.
 

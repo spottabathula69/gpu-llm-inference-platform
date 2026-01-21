@@ -29,8 +29,9 @@ spec:
           - --host=0.0.0.0
           - --port=8000
           - --api-key=$(VLLM_API_KEY)
-          - --gpu-memory-utilization=0.95
-          - --max-model-len=4096
+          - --gpu-memory-utilization=0.9
+          - --max-model-len=2048
+          - --swap-space=0
           - --enforce-eager
         ports:
           - containerPort: 8000
@@ -64,7 +65,7 @@ spec:
               - name: Authorization
                 value: Bearer sk-admin-token-12345
           failureThreshold: 60
-          periodSeconds: 60
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /v1/models
@@ -72,7 +73,7 @@ spec:
             httpHeaders:
               - name: Authorization
                 value: Bearer sk-admin-token-12345
-          initialDelaySeconds: 15
+          initialDelaySeconds: 120
           periodSeconds: 20
           failureThreshold: 10
         env:
@@ -85,6 +86,8 @@ spec:
             value: "1"
           - name: HF_HUB_ENABLE_HF_TRANSFER
             value: "0"
+          - name: HF_HUB_OFFLINE
+            value: "1"
         volumeMounts:
           - name: model-cache
             mountPath: /root/.cache/huggingface

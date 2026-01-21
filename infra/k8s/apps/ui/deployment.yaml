@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-ui
+  labels:
+    app: vllm-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-ui
+  template:
+    metadata:
+      labels:
+        app: vllm-ui
+    spec:
+      containers:
+      - name: ui
+        image: vllm-ui:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8501
+        env:
+        - name: VLLM_API_BASE
+          value: "http://vllm-service:8000/v1"
+        - name: VLLM_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: vllm-api-key
+              key: token
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vllm-ui-service
+spec:
+  selector:
+    app: vllm-ui
+  ports:
+  - port: 8501
+    targetPort: 8501
