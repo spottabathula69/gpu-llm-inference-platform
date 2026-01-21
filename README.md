@@ -71,6 +71,9 @@ Each phase below links to a standalone Markdown doc intended to live under `./do
 - [Phase 9 — Security (API Key Auth)](infra/k8s/apps/vllm/deployment.yaml)
 - [Phase 10 — Reliability (Alerting & SLOs)](docs/phase-10-reliability.md)
 - [Phase 11 — Production Hardening (TLS & Traffic)](docs/phase-11-hardening.md)
+- [Phase 12 — Scaling Architecture Design](docs/phase-12-scaling-architecture.md)
+- [Phase 13 — Model Quantization (Llama-3-8B)](docs/phase-13-quantization.md)
+- [Phase 14 — User Interface (Frontend)](docs/phase-14-frontend.md)
 
 Quick links:
 - 📊 [Load Test Report](docs/load_test_report.md)
@@ -141,6 +144,23 @@ Secured the transport layer and protected against DoS.
 - **TLS**: Enabled HTTPS via `cert-manager` (Self-Signed).
 - **Traffic Control**: Enforced Rate Limits (10 RPS) on Ingress.
 - **Verification**: Blocked ~55% of burst traffic (20 VUs) with `503 Service Unavailable`.
+
+### Phase 12: Scaling Architecture Design
+Designed a blueprint for enterprise scaling beyond a single node.
+- **Autoscaling**: Proposed KEDA integration to scale pods based on queue depth.
+- **Hardware Efficiency**: Documented MIG (Multi-Instance GPU) strategies for A100 partitioning.
+
+### Phase 13: Model Quantization (Llama-3-8B)
+Deployed a state-of-the-art **8B parameter model** on consumer hardware (12GB VRAM).
+- **Challenge**: Standard FP16 8B model requires ~16GB VRAM.
+- **Solution**: Used **AWQ 4-bit Quantization** to fit the model into 11.1GB VRAM.
+- **Tech**: vLLM with `--quantization awq`.
+
+### Phase 14: User Interface (Frontend)
+Built a user-friendly Chat UI to replace CLI tools.
+- **App**: Streamlit (Python) connecting to the secured vLLM API.
+- **Deployment**: containerized via Docker and exposed via Ingress/NodePort.
+- **Access**: See "Accessing the UI" section below.
 
 ---
 

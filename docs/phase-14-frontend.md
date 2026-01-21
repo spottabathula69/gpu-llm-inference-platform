@@ -31,12 +31,18 @@ graph LR
 
 ## Verification
 1.  **Build**: `eval $(minikube docker-env) && docker build -t vllm-ui:latest web-ui/`
-2.  **Access**:
+2.  **Access (Recommended)**:
+    Use Port Forwarding to bypass local network/DNS issues:
     ```bash
     kubectl port-forward svc/vllm-ui-service 8501:8501
     ```
     Then open [http://localhost:8501/](http://localhost:8501/).
-3.  **Chat**: Send a query ("Who are you?") and verify the streaming response from Llama-3-8B.
+
+3.  **Access (Alternative)**:
+    If you have `minikube tunnel` running and `/etc/hosts` configured:
+    Navigate to `https://llm.local/`.
+
+4.  **Chat**: Send a query ("Who are you?") and verify the streaming response from Llama-3-8B.
 
 ## Troubleshooting
 If `curl` or browser fails:
