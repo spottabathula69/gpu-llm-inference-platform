@@ -1,7 +1,13 @@
 # GPU LLM Inference Platform: Project Overview
 
 ## 1. Project Scope
-**Objective**: Deploy, optimize, and verify a production-grade LLM inference service using **vLLM** on Kubernetes (Minikube) with NVIDIA GPU acceleration (RTX 3060).
+**Objective**: Demonstrate that **Production-Grade Infrastructure** does not require enterprise-grade hardware. 
+This project proves you can deploy, secure, and scale state-of-the-art models (like **Llama-3-8B**) on **Consumer Hardware** (Single RTX 3060, 12GB) without compromising on reliability, observability, or security.
+
+**Core Philosophy**:
+- **Cost Efficiency**: Running SOTA 8B models on <$300 GPUs via Quantization (AWQ).
+- **Production Readiness**: Implementing TLS, Auth, Rate Limiting, and SLOs typically reserved for cloud clusters.
+- **GitOps**: Everything defined as code (IaC) for reproducibility.
 
 **Key Components**
 - **Engine**: vLLM (TinyLlama-1.1B-Chat).
